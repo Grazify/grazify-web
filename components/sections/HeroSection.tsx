@@ -57,7 +57,6 @@ export default function HeroSection() {
   return (
     <section id="top" className="relative overflow-hidden">
       {/* Hero visual */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-grazify-light via-grazify-soft to-grazify-soft" />
       <DottedPattern className="left-1/2 top-10 h-72 w-72 -translate-x-1/2" />
 
       <Container className="relative grid items-center gap-12 py-16 lg:grid-cols-2 lg:gap-8 lg:py-24">

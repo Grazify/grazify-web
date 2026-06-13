@@ -4,13 +4,10 @@ import {
   IndianRupee,
   MapPin,
   Microscope,
-  Monitor,
   Network,
   Package,
   ShieldCheck,
-  Smartphone,
   Sprout,
-  TabletSmartphone,
   Truck,
   type LucideIcon,
 } from "lucide-react";
@@ -50,10 +47,15 @@ export type QualityFeature = {
   icon: LucideIcon;
 };
 
+export type PlatformLogo = {
+  src: string;
+  label: string;
+};
+
 export type PlatformCard = {
   name: string;
   description: string;
-  icon: LucideIcon;
+  logos: PlatformLogo[];
 };
 
 export type PreviewScreen = {
@@ -223,17 +225,21 @@ export const platformCards: PlatformCard[] = [
   {
     name: "Android App",
     description: "Order and reorder supply on the move from any Android device.",
-    icon: Smartphone,
+    logos: [{ src: "/platforms/google-play.svg", label: "Google Play" }],
   },
   {
     name: "iOS App",
     description: "A polished ordering experience for your iPhone and iPad.",
-    icon: TabletSmartphone,
+    logos: [{ src: "/platforms/app-store.svg", label: "App Store" }],
   },
   {
-    name: "Desktop Dashboard",
-    description: "Manage procurement, schedules and invoices from one screen.",
-    icon: Monitor,
+    name: "Desktop App",
+    description: "Manage procurement, schedules and invoices on Windows, macOS and Linux.",
+    logos: [
+      { src: "/platforms/windows.svg", label: "Windows" },
+      { src: "/platforms/apple.svg", label: "macOS" },
+      { src: "/platforms/linux.svg", label: "Linux" },
+    ],
   },
 ];
 

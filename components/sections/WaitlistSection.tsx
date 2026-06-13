@@ -1,7 +1,7 @@
-import { Building2, MapPin, Phone, Store } from "lucide-react";
 import Container from "@/components/common/Container";
 import Reveal from "@/components/common/Reveal";
-import { businessTypes, heroChips } from "@/lib/constants";
+import WaitlistForm from "@/components/sections/WaitlistForm";
+import { heroChips } from "@/lib/constants";
 
 export default function WaitlistSection() {
   return (
@@ -45,105 +45,7 @@ export default function WaitlistSection() {
 
             {/* Waitlist form */}
             <Reveal className="p-8 sm:p-10">
-              <form aria-label="Join the Grazify business waitlist" className="space-y-5">
-                <div>
-                  <label
-                    htmlFor="business-name"
-                    className="mb-1.5 block text-sm font-semibold text-ink"
-                  >
-                    Business name
-                  </label>
-                  <div className="flex items-center gap-2 rounded-2xl border border-grazify-border bg-grazify-soft px-4 focus-within:border-grazify-primary">
-                    <Building2 className="h-4 w-4 text-muted" aria-hidden="true" />
-                    <input
-                      id="business-name"
-                      name="business-name"
-                      type="text"
-                      autoComplete="organization"
-                      placeholder="e.g. Parner Bhavan"
-                      className="w-full bg-transparent py-3 text-sm text-ink placeholder:text-muted focus:outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="mb-1.5 block text-sm font-semibold text-ink"
-                  >
-                    Phone number
-                  </label>
-                  <div className="flex items-center gap-2 rounded-2xl border border-grazify-border bg-grazify-soft px-4 focus-within:border-grazify-primary">
-                    <Phone className="h-4 w-4 text-muted" aria-hidden="true" />
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      placeholder="+91 98765 43210"
-                      className="w-full bg-transparent py-3 text-sm text-ink placeholder:text-muted focus:outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <label
-                      htmlFor="business-type"
-                      className="mb-1.5 block text-sm font-semibold text-ink"
-                    >
-                      Business type
-                    </label>
-                    <div className="flex items-center gap-2 rounded-2xl border border-grazify-border bg-grazify-soft px-4 focus-within:border-grazify-primary">
-                      <Store className="h-4 w-4 text-muted" aria-hidden="true" />
-                      <select
-                        id="business-type"
-                        name="business-type"
-                        defaultValue=""
-                        className="w-full bg-transparent py-3 text-sm text-ink focus:outline-none"
-                      >
-                        <option value="" disabled>
-                          Select type
-                        </option>
-                        {businessTypes.map((type) => (
-                          <option key={type.label} value={type.label}>
-                            {type.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="city"
-                      className="mb-1.5 block text-sm font-semibold text-ink"
-                    >
-                      City
-                    </label>
-                    <div className="flex items-center gap-2 rounded-2xl border border-grazify-border bg-grazify-soft px-4 focus-within:border-grazify-primary">
-                      <MapPin className="h-4 w-4 text-muted" aria-hidden="true" />
-                      <input
-                        id="city"
-                        name="city"
-                        type="text"
-                        autoComplete="address-level2"
-                        placeholder="e.g. Pune"
-                        className="w-full bg-transparent py-3 text-sm text-ink placeholder:text-muted focus:outline-none"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <button type="button" className="btn-primary w-full py-3.5">
-                  Join Waitlist
-                </button>
-
-                <p className="text-center text-xs text-muted">
-                  Grazify is a B2B platform. We&apos;ll only reach out about
-                  business supply access.
-                </p>
-              </form>
+              <WaitlistForm />
             </Reveal>
           </div>
         </div>

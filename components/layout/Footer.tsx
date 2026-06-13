@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Container from "@/components/common/Container";
+import Logo from "@/components/common/Logo";
 import PlatformBadge from "@/components/common/PlatformBadge";
 import { navLinks, platformCards } from "@/lib/constants";
 
@@ -12,14 +12,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            <Image
-              src="/brand/logo.svg"
-              alt="Grazify"
-              width={130}
-              height={39}
-              unoptimized
-              className="h-8 w-auto"
-            />
+            <Logo />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               The Sustainable Path — From Farm to Business. Fresh, traceable,
               wholesale grocery supply sourced directly from farms and producers

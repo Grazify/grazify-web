@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Container from "@/components/common/Container";
+import Logo from "@/components/common/Logo";
 import { navLinks } from "@/lib/constants";
 
 export default function Header() {
@@ -16,24 +16,16 @@ export default function Header() {
             aria-label="Grazify — B2B Grocery Supply"
             className="flex items-center"
           >
-            <Image
-              src="/brand/logo.svg"
-              alt="Grazify"
-              width={130}
-              height={39}
-              priority
-              unoptimized
-              className="h-8 w-auto sm:h-9"
-            />
+            <Logo />
           </a>
 
           {/* Nav links */}
-          <ul className="hidden items-center gap-1 md:flex">
+          <ul className="hidden items-center gap-1.5 md:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-muted transition-colors hover:bg-grazify-mint hover:text-grazify-dark"
+                  className="whitespace-nowrap rounded-full px-4 py-2 text-[15px] font-semibold text-ink/85 transition-colors hover:bg-grazify-mint hover:text-grazify-primary"
                 >
                   {link.label}
                 </a>
@@ -42,7 +34,7 @@ export default function Header() {
           </ul>
 
           {/* CTA */}
-          <a href="#waitlist" className="btn-primary px-5 py-2.5 text-sm">
+          <a href="#waitlist" className="btn-primary px-5 py-2.5 text-[15px]">
             Join Waitlist
           </a>
         </nav>

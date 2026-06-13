@@ -1,10 +1,21 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+/* Gilroy — only Light + ExtraBold are free, mapped across the weight range */
+const gilroy = localFont({
+  src: [
+    { path: "./fonts/Gilroy-Light.otf", weight: "300 500", style: "normal" },
+    { path: "./fonts/Gilroy-ExtraBold.otf", weight: "600 800", style: "normal" },
+  ],
+  variable: "--font-gilroy",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://grazify.com"),
   title: {
-    default: "Grazify — B2B Grocery Supply, From Farm to Business",
+    default: "Grazify — B2B Grocery Supply",
     template: "%s | Grazify",
   },
   description:
@@ -46,8 +57,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-grazify-soft font-sans text-ink antialiased">
+    <html lang="en" className={gilroy.variable}>
+      <body className="min-h-screen font-sans text-ink antialiased">
         {children}
       </body>
     </html>
