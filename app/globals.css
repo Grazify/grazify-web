@@ -45,15 +45,22 @@
 @layer components {
   /* Gradient CTA button */
   .btn-primary {
-    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-grazify-gradient px-6 py-3 text-sm font-semibold text-white shadow-float transition-transform duration-300;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-grazify-gradient px-6 py-3 text-sm font-semibold text-white shadow-float;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .btn-primary:hover {
-    @apply -translate-y-0.5;
+    transform: translateY(-2px);
+    box-shadow: 0 28px 64px -28px rgba(27, 138, 75, 0.42);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-grazify-border bg-white px-6 py-3 text-sm font-semibold text-ink transition-colors duration-300 hover:border-grazify-primary hover:text-grazify-primary;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-grazify-border bg-white px-6 py-3 text-sm font-semibold text-ink;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    @apply border-grazify-primary bg-grazify-mint text-grazify-primary;
   }
 
   /* Soft button shine */
@@ -63,32 +70,47 @@
     top: 0;
     left: -120%;
     height: 100%;
-    width: 60%;
+    width: 55%;
     background: linear-gradient(
       120deg,
       transparent,
-      rgba(255, 255, 255, 0.45),
+      rgba(255, 255, 255, 0.38),
       transparent
     );
     transform: skewX(-20deg);
-    animation: shine 3.5s ease-in-out infinite;
+    animation: shine 4s ease-in-out infinite;
   }
 
   /* Hover lift cards */
   .lift {
-    @apply transition-all duration-300 ease-out will-change-transform;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
   }
 
   .lift:hover {
-    @apply -translate-y-1.5 shadow-card;
+    transform: translateY(-5px);
+    @apply shadow-card;
   }
 }
 
-/* Reveal on scroll */
+/* Glass navbar — matches the GraziLink frosted pill style */
+.navbar-glass {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(40px) saturate(1.8);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  box-shadow:
+    0 2px 24px -4px rgba(16, 25, 20, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Reveal on scroll — expo-out curve for a snappy, confident feel */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal.is-visible {
@@ -100,30 +122,32 @@
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(-14px);
+    transform: translateY(-11px);
   }
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 5.5s ease-in-out infinite;
+  will-change: transform;
 }
 
-/* Floating cards */
+/* Floating cards — slightly offset phase from phone */
 @keyframes float-soft {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
 .animate-float-soft {
-  animation: float-soft 5s ease-in-out infinite;
+  animation: float-soft 4.5s ease-in-out infinite;
+  will-change: transform;
 }
 
 .float-delay-1 {
@@ -138,11 +162,11 @@
   animation-delay: 2.4s;
 }
 
-/* Product cards slide in */
+/* Slide-up for chips / cards */
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -152,7 +176,7 @@
 
 .animate-slide-up {
   opacity: 0;
-  animation: slide-up 0.6s ease-out forwards;
+  animation: slide-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Moving supply dots */
@@ -234,17 +258,17 @@
 @keyframes node-ping {
   0% {
     transform: scale(1);
-    opacity: 0.45;
+    opacity: 0.38;
   }
-  70%,
+  65%,
   100% {
-    transform: scale(1.55);
+    transform: scale(1.48);
     opacity: 0;
   }
 }
 
 .animate-node-ping {
-  animation: node-ping 2.4s ease-out infinite;
+  animation: node-ping 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 /* Soft button shine keyframe */

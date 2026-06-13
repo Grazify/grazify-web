@@ -1,3 +1,4 @@
+import { Mail } from "lucide-react";
 import Container from "@/components/common/Container";
 import Logo from "@/components/common/Logo";
 import PlatformBadge from "@/components/common/PlatformBadge";
@@ -9,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="mt-8 border-t border-grazify-border bg-white">
       <Container className="py-14">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_auto]">
           {/* Brand */}
           <div>
             <Logo />
@@ -36,6 +37,22 @@ export default function Footer() {
               ))}
             </ul>
           </nav>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-sm font-semibold text-ink">Contact</h3>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <a
+                  href="mailto:grazify.farm@gmail.com"
+                  className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-grazify-primary"
+                >
+                  <Mail className="h-4 w-4 shrink-0 text-grazify-primary" aria-hidden="true" />
+                  grazify.farm@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
 
           {/* Coming soon platforms */}
           <div>

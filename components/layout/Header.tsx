@@ -8,7 +8,7 @@ export default function Header() {
       <Container>
         <nav
           aria-label="Primary"
-          className="flex items-center justify-between gap-4 rounded-full border border-white/60 bg-white/65 px-4 py-3.5 shadow-glass ring-1 ring-grazify-border/40 backdrop-blur-2xl backdrop-saturate-150 sm:px-6 sm:py-4"
+          className="navbar-glass flex items-center justify-between gap-4 rounded-full px-4 py-3.5 sm:px-6 sm:py-4"
         >
           {/* Logo */}
           <a

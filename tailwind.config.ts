@@ -35,7 +35,7 @@ const config: Config = {
       boxShadow: {
         soft: "0 10px 30px -12px rgba(16, 25, 20, 0.12)",
         card: "0 18px 50px -24px rgba(16, 25, 20, 0.22)",
-        glass: "0 12px 40px -16px rgba(16, 25, 20, 0.18)",
+        glass: "0 2px 24px -4px rgba(16, 25, 20, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.96)",
         float: "0 24px 60px -28px rgba(27, 138, 75, 0.32)",
         phone: "0 40px 80px -32px rgba(16, 25, 20, 0.32)",
       },
