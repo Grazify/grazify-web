@@ -60,23 +60,13 @@ export type PreviewScreen = {
   id: string;
   title: string;
   caption: string;
+  src: string;
+  alt: string;
 };
 
 export type Faq = {
   question: string;
   answer: string;
-};
-
-export type MockProduct = {
-  name: string;
-  local: string;
-  emoji: string;
-  unit: string;
-  price: number;
-  mrp: number;
-  discount: string;
-  delivery: string;
-  tint: string;
 };
 
 /* Header navigation */
@@ -253,26 +243,43 @@ export const previewScreens: PreviewScreen[] = [
     id: "home",
     title: "Home listing",
     caption: "Browse fresh produce by category with live wholesale pricing.",
+    src: "/screens/app-home.png",
+    alt: "Grazify app home screen showing fresh produce listings with prices",
   },
   {
     id: "categories",
     title: "Categories",
     caption: "Jump straight to the section your kitchen needs.",
+    src: "/screens/app-categories.png",
+    alt: "Grazify app categories screen with grocery category tiles",
+  },
+  {
+    id: "order-again",
+    title: "Order again",
+    caption: "Reorder your usual supply list in a single tap.",
+    src: "/screens/app-order-again.png",
+    alt: "Grazify app order again screen with previously ordered items",
   },
   {
     id: "cart",
     title: "Cart",
     caption: "Review quantities, savings and your scheduled delivery slot.",
+    src: "/screens/app-cart.png",
+    alt: "Grazify app cart screen with scheduled delivery and bill details",
   },
   {
     id: "orders",
     title: "Orders",
-    caption: "Track confirmed shipments and reorder past lists in a tap.",
+    caption: "Track confirmed shipments and order history at a glance.",
+    src: "/screens/app-orders.png",
+    alt: "Grazify app orders screen showing confirmed and past orders",
   },
   {
     id: "details",
     title: "Order details",
     caption: "See itemised bills, taxes and verified origin per order.",
+    src: "/screens/app-order-details.png",
+    alt: "Grazify app order details screen with itemised bill summary",
   },
 ];
 
@@ -307,75 +314,5 @@ export const faqs: Faq[] = [
     question: "Is Grazify for individual customers?",
     answer:
       "No. Grazify is strictly a B2B supply platform and does not sell to individual consumers. Our pricing, quantities and delivery are designed entirely around business needs.",
-  },
-];
-
-/* Mock products */
-export const mockProducts: MockProduct[] = [
-  {
-    name: "Onion",
-    local: "Kanda",
-    emoji: "🧅",
-    unit: "1.0 kg",
-    price: 32,
-    mrp: 36,
-    discount: "11% OFF",
-    delivery: "Tomorrow",
-    tint: "from-fuchsia-100 to-rose-50",
-  },
-  {
-    name: "Tomato",
-    local: "Tamatar",
-    emoji: "🍅",
-    unit: "1.0 kg",
-    price: 28,
-    mrp: 34,
-    discount: "18% OFF",
-    delivery: "Tomorrow",
-    tint: "from-red-100 to-orange-50",
-  },
-  {
-    name: "Spinach",
-    local: "Palak",
-    emoji: "🥬",
-    unit: "1.0 bunch",
-    price: 20,
-    mrp: 26,
-    discount: "19% OFF",
-    delivery: "Tomorrow",
-    tint: "from-green-100 to-emerald-50",
-  },
-  {
-    name: "Milk",
-    local: "Doodh",
-    emoji: "🥛",
-    unit: "1.0 ltr",
-    price: 54,
-    mrp: 60,
-    discount: "10% OFF",
-    delivery: "Tomorrow",
-    tint: "from-sky-100 to-blue-50",
-  },
-  {
-    name: "Chicken",
-    local: "Murgi",
-    emoji: "🍗",
-    unit: "1.0 kg",
-    price: 210,
-    mrp: 240,
-    discount: "12% OFF",
-    delivery: "Tomorrow",
-    tint: "from-rose-100 to-pink-50",
-  },
-  {
-    name: "Rice",
-    local: "Chawal",
-    emoji: "🌾",
-    unit: "5.0 kg",
-    price: 320,
-    mrp: 360,
-    discount: "11% OFF",
-    delivery: "Tomorrow",
-    tint: "from-amber-100 to-yellow-50",
   },
 ];

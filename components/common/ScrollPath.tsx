@@ -25,14 +25,14 @@ export default function ScrollPath({ className }: ScrollPathProps) {
       />
       <path
         d={path}
-        stroke="#159947"
+        stroke="#1B8A4B"
         strokeWidth="3"
         strokeLinecap="round"
         className="animate-dash"
         opacity="0.7"
       />
       {[0, 1, 2].map((i) => (
-        <circle key={i} r="5" fill="#159947">
+        <circle key={i} r="5" fill="#1B8A4B">
           <animateMotion
             dur="3.6s"
             repeatCount="indefinite"

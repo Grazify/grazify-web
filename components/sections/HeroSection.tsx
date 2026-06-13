@@ -9,8 +9,10 @@ import type { LucideIcon } from "lucide-react";
 import Container from "@/components/common/Container";
 import DottedPattern from "@/components/common/DottedPattern";
 import Reveal from "@/components/common/Reveal";
-import PhoneMockup from "@/components/screens/PhoneMockup";
-import { heroChips } from "@/lib/constants";
+import AppScreenshot from "@/components/screens/AppScreenshot";
+import { heroChips, previewScreens } from "@/lib/constants";
+
+const heroScreen = previewScreens.find((screen) => screen.id === "home")!;
 
 type FloatingCard = {
   icon: LucideIcon;
@@ -99,19 +101,21 @@ export default function HeroSection() {
           </ul>
         </Reveal>
 
-        {/* Phone with floating cards */}
-        <div className="relative mx-auto w-full max-w-sm">
-          <div
-            aria-hidden="true"
-            className="absolute -inset-6 rounded-[3rem] bg-grazify-gradient opacity-10 blur-2xl animate-gradient"
-          />
+        {/* Hero screenshot */}
+        <div className="relative mx-auto w-[250px] sm:w-[300px] lg:w-[330px]">
           <div className="relative animate-float">
-            <PhoneMockup />
+            <AppScreenshot
+              src={heroScreen.src}
+              alt={heroScreen.alt}
+              priority
+              sizes="(max-width: 640px) 70vw, 330px"
+              className="aspect-[1332/2690] w-full"
+            />
 
             {floatingCards.map((card) => (
               <div
                 key={card.title}
-                className={`absolute z-10 hidden items-center gap-2.5 rounded-2xl border border-grazify-border bg-white/95 px-3.5 py-2.5 shadow-card backdrop-blur animate-float-soft sm:flex ${card.position} ${card.delay}`}
+                className={`absolute z-10 hidden items-center gap-2.5 rounded-2xl border border-grazify-border bg-white/90 px-3.5 py-2.5 shadow-card backdrop-blur animate-float-soft sm:flex ${card.position} ${card.delay}`}
               >
                 <span className="grid h-9 w-9 place-items-center rounded-xl bg-grazify-light text-grazify-dark">
                   <card.icon className="h-4 w-4" aria-hidden="true" />

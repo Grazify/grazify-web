@@ -1,28 +1,30 @@
-import { Leaf } from "lucide-react";
+import Image from "next/image";
 import Container from "@/components/common/Container";
 import { navLinks } from "@/lib/constants";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 pt-3 sm:pt-4">
+    <header className="sticky top-0 z-50 pt-3 sm:pt-5">
       <Container>
         <nav
           aria-label="Primary"
-          className="flex items-center justify-between gap-4 rounded-full border border-grazify-border bg-white/80 px-4 py-2.5 shadow-glass backdrop-blur-xl sm:px-5"
+          className="flex items-center justify-between gap-4 rounded-full border border-white/60 bg-white/65 px-4 py-3.5 shadow-glass ring-1 ring-grazify-border/40 backdrop-blur-2xl backdrop-saturate-150 sm:px-6 sm:py-4"
         >
           {/* Logo */}
-          <a href="#top" className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-grazify-gradient text-white shadow-float">
-              <Leaf className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <span className="flex flex-col leading-none">
-              <span className="text-lg font-bold tracking-tight text-ink">
-                Grazify
-              </span>
-              <span className="text-[11px] font-medium text-muted">
-                B2B Grocery Supply
-              </span>
-            </span>
+          <a
+            href="#top"
+            aria-label="Grazify — B2B Grocery Supply"
+            className="flex items-center"
+          >
+            <Image
+              src="/brand/logo.svg"
+              alt="Grazify"
+              width={130}
+              height={39}
+              priority
+              unoptimized
+              className="h-8 w-auto sm:h-9"
+            />
           </a>
 
           {/* Nav links */}

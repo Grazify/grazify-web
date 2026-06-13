@@ -11,7 +11,7 @@ export default function DottedPattern({ className }: DottedPatternProps) {
       aria-hidden="true"
       className={cn("pointer-events-none absolute", className)}
       style={{
-        backgroundImage: "radial-gradient(#159947 1.4px, transparent 1.4px)",
+        backgroundImage: "radial-gradient(#1B8A4B 1.4px, transparent 1.4px)",
         backgroundSize: "18px 18px",
         opacity: 0.12,
       }}
