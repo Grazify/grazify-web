@@ -370,6 +370,40 @@
   animation: pulse-ring 2.4s ease-out infinite;
 }
 
+/* Continuously breathing glow for the scroll-drawn snake line. */
+@keyframes snake-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 2px rgba(27, 138, 75, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgba(27, 138, 75, 0.75));
+  }
+}
+
+.snake-line {
+  animation: snake-glow 2.6s ease-in-out infinite;
+}
+
+/* Expanding ring ripple around the snake's leading head. */
+@keyframes snake-head {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.snake-head-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: snake-head 1.8s ease-out infinite;
+}
+
 /* Honour users who prefer reduced motion: disable every looping/entrance
    animation and show revealed content immediately. */
 @media (prefers-reduced-motion: reduce) {
@@ -379,6 +413,8 @@
   .animate-pulse-ring,
   .animate-flow,
   .animate-node-ping,
+  .snake-line,
+  .snake-head-halo,
   .btn-primary::after {
     animation: none;
   }

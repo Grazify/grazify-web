@@ -6,11 +6,10 @@ import SectionHeading from "@/components/common/SectionHeading";
 import SupplyFlowVisual from "@/components/screens/SupplyFlowVisual";
 import { supplySteps } from "@/lib/constants";
 
-/* Vertical serpentine spine that draws itself down the timeline as the section
-   scrolls past (see ScrollDrawPath). Weaves around the centre of an 80-wide,
-   1000-tall viewBox; preserveAspectRatio="none" stretches it to the gutter. */
-const SNAKE_PATH =
-  "M40 0 C40 110 66 150 66 250 S14 350 14 450 S66 550 66 650 S14 750 14 850 S40 960 40 1000";
+/* Straight vertical spine, centred in a 60-wide viewBox so every station node
+   sits exactly on it. It draws itself down the timeline as the section scrolls
+   (see ScrollDrawPath); preserveAspectRatio="none" stretches it to the gutter. */
+const TIMELINE_PATH = "M30 0 L30 1000";
 
 export default function SupplyChainSection() {
   return (
@@ -28,17 +27,27 @@ export default function SupplyChainSection() {
 
         {/* Supply steps — vertical timeline with a snake spine that draws as
             you scroll down through the steps. */}
-        <div className="relative mx-auto mt-14 max-w-2xl pl-14 sm:pl-24">
+        <div className="relative mx-auto mt-14 max-w-3xl pl-10 sm:pl-14">
           <ScrollDrawPath
-            d={SNAKE_PATH}
-            viewBox="0 0 80 1000"
-            strokeWidth={4}
-            className="absolute inset-y-0 left-0 w-14 sm:w-20"
+            d={TIMELINE_PATH}
+            viewBox="0 0 60 1000"
+            strokeWidth={5}
+            className="absolute inset-y-6 left-0 w-10 [mask-image:linear-gradient(to_bottom,transparent,#000_5%,#000_95%,transparent)] sm:w-14"
           />
-          <ol className="space-y-6 sm:space-y-8">
+          <ol className="space-y-5">
             {supplySteps.map((step, index) => (
               <Reveal key={step.step} delay={index * 90}>
-                <li className="tap-card rounded-3xl border border-grazify-border bg-white p-6">
+                <li className="tap-card relative rounded-3xl border border-grazify-border bg-white p-6">
+                  {/* Connector tick from the spine node into the card */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-[-20px] top-12 h-0.5 w-5 -translate-y-1/2 bg-grazify-primary/30 sm:left-[-28px] sm:w-7"
+                  />
+                  {/* Station node on the spine, aligned with the icon row */}
+                  <span
+                    aria-hidden="true"
+                    className="animate-pulse-ring absolute left-[-20px] top-12 block h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white bg-grazify-gradient sm:left-[-28px]"
+                  />
                   <div className="flex items-center gap-4">
                     <IconTile variant="gradient" className="h-12 w-12">
                       <step.icon className="h-6 w-6" aria-hidden="true" />
