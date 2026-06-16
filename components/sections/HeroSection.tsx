@@ -9,7 +9,6 @@ import type { LucideIcon } from "lucide-react";
 import Container from "@/components/common/Container";
 import DottedPattern from "@/components/common/DottedPattern";
 import IconTile from "@/components/common/IconTile";
-import Reveal from "@/components/common/Reveal";
 import AppScreenshot from "@/components/screens/AppScreenshot";
 import { heroChips, previewScreens } from "@/lib/constants";
 
@@ -60,13 +59,14 @@ export default function HeroSection() {
       <DottedPattern className="left-1/2 top-10 h-72 w-72 -translate-x-1/2" />
 
       <Container className="relative grid items-center gap-10 py-10 lg:grid-cols-2 lg:gap-6 lg:py-14 xl:py-20">
-        {/* Hero copy */}
-        <Reveal>
+        {/* Hero copy — rendered immediately (no scroll-reveal) so the LCP
+            heading paints without waiting on JS. */}
+        <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-grazify-border bg-white/70 px-4 py-1.5 text-sm font-medium text-grazify-dark backdrop-blur">
             🌾 Direct from farms • Built for businesses
           </span>
 
-          <h1 className="mt-4 text-balance text-[2.15rem] font-bold leading-[1.1] tracking-tight text-ink sm:text-[2.6rem] lg:text-[2.6rem] xl:text-5xl">
+          <h1 className="mt-4 text-[2.15rem] font-bold leading-[1.1] tracking-tight text-ink sm:text-[2.6rem] lg:text-[2.6rem] xl:text-5xl">
             Fresh grocery supply,{" "}
             <span className="text-grazify-primary">from farm to business</span>
           </h1>
@@ -99,7 +99,7 @@ export default function HeroSection() {
               </li>
             ))}
           </ul>
-        </Reveal>
+        </div>
 
         {/* Hero screenshot – constrained so it never overflows the viewport */}
         <div className="relative mx-auto w-[200px] sm:w-[240px] lg:w-[255px] xl:w-[290px]">
