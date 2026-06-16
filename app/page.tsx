@@ -13,8 +13,15 @@ import FaqSection from "@/components/sections/FaqSection";
 export default function Home() {
   return (
     <>
+      {/* Keyboard / screen-reader users can jump straight past the navbar. */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-grazify-primary focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white focus:shadow-float"
+      >
+        Skip to content
+      </a>
       <Header />
-      <main>
+      <main id="main-content">
         <HeroSection />
         <SupplyChainSection />
         <ProductsSection />

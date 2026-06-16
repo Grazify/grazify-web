@@ -294,7 +294,7 @@ export const faqs: Faq[] = [
   {
     question: "What is Grazify?",
     answer:
-      "Grazify is a B2B grocery supply platform that connects local farms and food producers directly to businesses. We deliver fresh, traceable raw ingredients — vegetables, fruits, dairy, meat, poultry, grains and essentials — as a consistent wholesale supply.",
+      "Grazify is a B2B grocery supply platform that connects local farms and food producers directly to businesses. We deliver fresh, traceable raw ingredients – vegetables, fruits, dairy, meat, poultry, grains and essentials – as a consistent wholesale supply.",
   },
   {
     question: "Who can use Grazify?",
@@ -304,7 +304,7 @@ export const faqs: Faq[] = [
   {
     question: "What products does Grazify supply?",
     answer:
-      "We supply fresh raw food ingredients sourced directly from farms and producers — leafy greens, root and fruiting vegetables, fruits, dairy, meat and poultry, grains, staples and spices. Every item is quality checked before delivery.",
+      "We supply fresh raw food ingredients sourced directly from farms and producers – leafy greens, root and fruiting vegetables, fruits, dairy, meat and poultry, grains, staples and spices. Every item is quality checked before delivery.",
   },
   {
     question: "Are Android, iOS and Desktop apps available?",

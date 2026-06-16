@@ -10,7 +10,7 @@ type AppScreenshotProps = {
   glow?: boolean;
 };
 
-/* App screenshot — transparent phone floating with a soft light effect */
+/* App screenshot – transparent phone floating with a soft light effect */
 export default function AppScreenshot({
   src,
   alt,

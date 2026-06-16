@@ -90,7 +90,7 @@ export default function WaitlistForm() {
       onSubmit={handleSubmit}
       noValidate
     >
-      {/* Honeypot — hidden from users, screen readers and keyboard */}
+      {/* Honeypot – hidden from users, screen readers and keyboard */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-[-9999px] top-[-9999px] h-px w-px overflow-hidden opacity-0"

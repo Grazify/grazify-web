@@ -5,6 +5,8 @@
 :root {
   --font-sans: var(--font-gilroy), -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Brand palette (kept in sync with tailwind.config.ts). */
   --grazify-primary: #1b8a4b;
   --grazify-dark: #0f6b38;
   --grazify-light: #eaf8ef;
@@ -13,11 +15,23 @@
   --grazify-border: #e6eee9;
   --ink: #101914;
   --muted: #6b746e;
+
+  /* Motion design tokens — every interaction references these so the whole
+     site shares one consistent, smooth feel. */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1); /* snappy settle, no overshoot */
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1); /* gentle deceleration */
+  --ease-float: cubic-bezier(0.37, 0, 0.63, 1); /* symmetric sine-like drift */
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1); /* overshoots → tactile bounce */
+  --dur-fast: 0.2s;
+  --dur-base: 0.3s;
+  --dur-slow: 0.6s;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Keep anchored sections clear of the sticky header. */
+    scroll-padding-top: 110px;
   }
 
   body {
@@ -33,20 +47,59 @@
     color: var(--ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
-  /* Anchor scroll offset for sticky header */
+  /* Anchor scroll offset for the sticky header. */
   section[id] {
-    scroll-margin-top: 128px;
+    scroll-margin-top: 110px;
+  }
+
+  /* Branded text selection. */
+  ::selection {
+    background: rgba(27, 138, 75, 0.18);
+    color: var(--ink);
+  }
+
+  /* One consistent, accessible focus ring for every interactive element —
+     only shows for keyboard users, never on mouse click. */
+  :focus-visible {
+    outline: 2px solid var(--grazify-primary);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Subtle branded scrollbar (desktop). */
+  @media (pointer: fine) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(27, 138, 75, 0.35) transparent;
+    }
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(27, 138, 75, 0.3);
+      border: 3px solid transparent;
+      border-radius: 9999px;
+      background-clip: content-box;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(27, 138, 75, 0.5);
+      background-clip: content-box;
+    }
   }
 }
 
 @layer components {
-  /* Gradient CTA button */
+  /* Primary gradient CTA button. */
   .btn-primary {
     @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-grazify-gradient px-6 py-3 text-sm font-semibold text-white shadow-float;
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    transition:
+      transform var(--dur-base) var(--ease-back),
+      box-shadow var(--dur-base) var(--ease-spring);
   }
 
   .btn-primary:hover {
@@ -54,16 +107,32 @@
     box-shadow: 0 28px 64px -28px rgba(27, 138, 75, 0.42);
   }
 
+  /* Press bounce on click — springs back via --ease-back on release. */
+  .btn-primary:active {
+    transform: translateY(0) scale(0.96);
+    transition-duration: var(--dur-fast);
+  }
+
+  /* Secondary outline button. */
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-grazify-border bg-white px-6 py-3 text-sm font-semibold text-ink;
-    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+    transition:
+      transform var(--dur-base) var(--ease-back),
+      border-color var(--dur-fast) ease,
+      color var(--dur-fast) ease,
+      background-color var(--dur-fast) ease;
   }
 
   .btn-secondary:hover {
     @apply border-grazify-primary bg-grazify-mint text-grazify-primary;
   }
 
-  /* Soft button shine */
+  .btn-secondary:active {
+    transform: scale(0.96);
+    transition-duration: var(--dur-fast);
+  }
+
+  /* Looping light sweep across the primary button. */
   .btn-primary::after {
     content: "";
     position: absolute;
@@ -81,19 +150,52 @@
     animation: shine 4s ease-in-out infinite;
   }
 
-  /* Hover lift cards */
-  .lift {
-    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Header nav link — light by default, with a smooth pill + colour shift
+     and a press bounce on click. */
+  .nav-link {
+    position: relative;
+    transition:
+      color var(--dur-fast) ease,
+      background-color var(--dur-fast) ease,
+      transform var(--dur-base) var(--ease-back);
+  }
+
+  .nav-link:active {
+    transform: scale(0.92);
+    transition-duration: var(--dur-fast);
+  }
+
+  /* Interactive card — border-driven, no shadow/elevation. The brand border
+     warms on hover; a click springs it with a subtle bounce. */
+  .tap-card {
+    transition:
+      transform var(--dur-base) var(--ease-back),
+      border-color var(--dur-base) ease;
     will-change: transform;
   }
 
-  .lift:hover {
-    transform: translateY(-5px);
-    @apply shadow-card;
+  .tap-card:hover {
+    border-color: rgba(27, 138, 75, 0.45);
+  }
+
+  .tap-card:active {
+    transform: scale(0.97);
+    transition-duration: var(--dur-fast);
+  }
+
+  /* Tactile press bounce for small controls (nav links, icon buttons). */
+  .tap {
+    transition: transform var(--dur-base) var(--ease-back);
+  }
+
+  .tap:active {
+    transform: scale(0.92);
+    transition-duration: var(--dur-fast);
   }
 }
 
-/* Glass navbar — matches the GraziLink frosted pill style */
+/* Frosted-glass navbar pill. Near-transparent at the top of the page, then
+   firms up (data-scrolled) once content scrolls behind it for legibility. */
 .navbar-glass {
   background: rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(40px) saturate(1.8);
@@ -102,51 +204,71 @@
   box-shadow:
     0 2px 24px -4px rgba(16, 25, 20, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  transition:
+    background-color var(--dur-base) ease,
+    box-shadow var(--dur-base) ease,
+    border-color var(--dur-base) ease;
 }
 
-/* Reveal on scroll — expo-out curve for a snappy, confident feel */
+.navbar-glass[data-scrolled="true"] {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow:
+    0 10px 34px -10px rgba(16, 25, 20, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Reveal on scroll — fades and lifts content into view as it enters. */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translate3d(0, 20px, 0);
   transition:
-    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--dur-slow) var(--ease-out-soft),
+    transform var(--dur-slow) var(--ease-out-soft);
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
-/* Floating phone mockup */
+/* Floating phone mockup — extra keyframe stops approximate a sine wave so the
+   drift eases organically rather than snapping at the top and bottom.
+   translate3d keeps the motion on the GPU compositor for smoothness. */
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(0, -7px, 0);
   }
   50% {
-    transform: translateY(-11px);
+    transform: translate3d(0, -11px, 0);
+  }
+  75% {
+    transform: translate3d(0, -7px, 0);
   }
 }
 
 .animate-float {
-  animation: float 5.5s ease-in-out infinite;
+  animation: float 5.5s var(--ease-float) infinite;
   will-change: transform;
 }
 
-/* Floating cards — slightly offset phase from phone */
+/* Floating cards — same drift, shorter travel, offset phase from the phone. */
 @keyframes float-soft {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translate3d(0, -8px, 0);
   }
 }
 
 .animate-float-soft {
-  animation: float-soft 4.5s ease-in-out infinite;
+  animation: float-soft 4.5s var(--ease-float) infinite;
   will-change: transform;
 }
 
@@ -162,72 +284,21 @@
   animation-delay: 2.4s;
 }
 
-/* Slide-up for chips / cards */
+/* Slide-up for hero chips / cards. */
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translate3d(0, 14px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-slide-up {
   opacity: 0;
-  animation: slide-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* Moving supply dots */
-@keyframes dot-move {
-  0% {
-    offset-distance: 0%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    offset-distance: 100%;
-    opacity: 0;
-  }
-}
-
-@keyframes dash-flow {
-  to {
-    stroke-dashoffset: -28;
-  }
-}
-
-.animate-dash {
-  stroke-dasharray: 6 8;
-  animation: dash-flow 1.2s linear infinite;
-}
-
-/* Horizontal travelling dot for supply flow */
-@keyframes travel {
-  0% {
-    left: 0;
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  92% {
-    opacity: 1;
-  }
-  100% {
-    left: 100%;
-    opacity: 0;
-  }
-}
-
-.animate-travel {
-  animation: travel 3.6s ease-in-out infinite;
+  animation: slide-up 0.55s var(--ease-spring) forwards;
 }
 
 /* Flowing streak along a supply connector */
@@ -271,7 +342,7 @@
   animation: node-ping 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Soft button shine keyframe */
+/* Light-sweep keyframe for the primary button. */
 @keyframes shine {
   0% {
     left: -120%;
@@ -282,23 +353,7 @@
   }
 }
 
-/* Gentle gradient movement */
-@keyframes gradient-pan {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-pan 9s ease infinite;
-}
-
-/* Pulse ring for status dots */
+/* Pulse ring for "live" status dots. */
 @keyframes pulse-ring {
   0% {
     box-shadow: 0 0 0 0 rgba(27, 138, 75, 0.35);
@@ -315,14 +370,12 @@
   animation: pulse-ring 2.4s ease-out infinite;
 }
 
-/* Respect reduced motion */
+/* Honour users who prefer reduced motion: disable every looping/entrance
+   animation and show revealed content immediately. */
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
   .animate-float-soft,
   .animate-slide-up,
-  .animate-travel,
-  .animate-gradient,
-  .animate-dash,
   .animate-pulse-ring,
   .animate-flow,
   .animate-node-ping,
@@ -334,5 +387,18 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* Drop the press-bounce scale for users who prefer reduced motion. */
+  .tap:active,
+  .tap-card:active,
+  .btn-primary:active,
+  .btn-secondary:active {
+    transform: none;
+  }
+
+  /* Disable smooth scroll so anchor jumps are instant. */
+  html {
+    scroll-behavior: auto;
   }
 }

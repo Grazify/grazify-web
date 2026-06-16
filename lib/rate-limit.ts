@@ -1,7 +1,7 @@
 /* Simple in-memory, IP-based rate limiter.
 
    NOTE: This is fine for a small waitlist / early deployment, but the state
-   lives in process memory — it resets on serverless cold starts and is not
+   lives in process memory – it resets on serverless cold starts and is not
    shared across multiple instances. Swap for a shared store (e.g. Redis/KV)
    if you need strict, global limits. */
 

@@ -42,7 +42,7 @@ function formatSubmittedAt(date: Date): string {
 
 
 /* Create a task in a ClickUp list. The token is sent in the Authorization
-   header only — never logged. */
+   header only – never logged. */
 function createClickUpTask(
   listId: string,
   token: string,
@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  /* 2. Honeypot — silently accept (no task) so bots think they succeeded. */
+  /* 2. Honeypot – silently accept (no task) so bots think they succeeded. */
   if (asString(body.website) !== "") {
     return NextResponse.json({ success: true, message: "Thanks!" });
   }

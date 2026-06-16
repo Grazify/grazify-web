@@ -6,12 +6,12 @@ import { previewScreens } from "@/lib/constants";
 
 export default function AppPreviewSection() {
   return (
-    <section className="bg-grazify-mint py-20 sm:py-24">
+    <section className="bg-grazify-mint py-24 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Inside The App"
           title="A clean ordering experience, end to end"
-          subtitle="A look at how businesses browse, order, and track their fresh supply on Grazify — home listings, categories, cart, and orders."
+          subtitle="A look at how businesses browse, order, and track their fresh supply on Grazify – home listings, categories, cart, and orders."
         />
 
         {/* App preview gallery */}

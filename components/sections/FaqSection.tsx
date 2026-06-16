@@ -6,7 +6,7 @@ import { faqs } from "@/lib/constants";
 
 export default function FaqSection() {
   return (
-    <section id="faq" className="bg-grazify-mint py-20 sm:py-24">
+    <section id="faq" className="bg-grazify-mint py-24 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="FAQ"
@@ -17,7 +17,7 @@ export default function FaqSection() {
         <div className="mx-auto mt-12 max-w-3xl space-y-4">
           {faqs.map((faq, index) => (
             <Reveal key={faq.question} delay={(index % 3) * 80}>
-              <details className="group rounded-3xl border border-grazify-border bg-white px-6 py-5 shadow-soft open:shadow-card">
+              <details className="tap-card group rounded-3xl border border-grazify-border bg-white px-6 py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left">
                   <span className="text-base font-semibold text-ink sm:text-lg">
                     {faq.question}

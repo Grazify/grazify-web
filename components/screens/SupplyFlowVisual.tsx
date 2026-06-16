@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Building2, Package, ShieldCheck, Sprout } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import IconTile from "@/components/common/IconTile";
 
 type FlowNode = {
   label: string;
@@ -18,13 +19,16 @@ const nodes: FlowNode[] = [
 /* Supply flow */
 export default function SupplyFlowVisual() {
   return (
-    <div className="rounded-3xl border border-grazify-border bg-white p-6 shadow-soft sm:p-9">
+    <div className="rounded-3xl border border-grazify-border bg-white p-6 sm:p-9">
       <div className="flex items-start">
         {nodes.map((node, index) => (
           <Fragment key={node.label}>
             {/* Node */}
             <div className="flex w-20 shrink-0 flex-col items-center gap-3 text-center sm:w-28">
-              <span className="relative grid h-14 w-14 place-items-center rounded-2xl bg-grazify-gradient text-white shadow-float sm:h-16 sm:w-16">
+              <IconTile
+                variant="gradient"
+                className="relative h-14 w-14 sm:h-16 sm:w-16"
+              >
                 <span
                   className="absolute inset-0 rounded-2xl bg-grazify-primary animate-node-ping"
                   style={{ animationDelay: `${index * 0.6}s` }}
@@ -33,7 +37,7 @@ export default function SupplyFlowVisual() {
                   className="relative h-6 w-6 sm:h-7 sm:w-7"
                   aria-hidden="true"
                 />
-              </span>
+              </IconTile>
               <span className="flex flex-col gap-0.5">
                 <span className="text-xs font-bold text-ink sm:text-sm">
                   {node.label}

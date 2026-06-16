@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export default function PlatformSection() {
   return (
-    <section id="platforms" className="py-20 sm:py-24">
+    <section id="platforms" className="py-24 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Platforms"
@@ -23,7 +23,7 @@ export default function PlatformSection() {
             const multi = platform.logos.length > 1;
             return (
               <Reveal key={platform.name} delay={index * 100}>
-                <article className="lift flex h-full flex-col rounded-3xl border border-grazify-border bg-white p-7 text-center">
+                <article className="tap-card flex h-full flex-col rounded-3xl border border-grazify-border bg-white p-7 text-center">
                   {/* Platform logos */}
                   <div className="flex min-h-[64px] items-center justify-center gap-2.5">
                     {platform.logos.map((logo) => (

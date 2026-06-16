@@ -6,7 +6,7 @@ export type WaitlistLead = {
   phoneNumber: string;
   businessType: string;
   city: string;
-  /* Honeypot — should always be empty for real users. */
+  /* Honeypot – should always be empty for real users. */
   website?: string;
 };
 
@@ -45,7 +45,7 @@ export async function submitWaitlistLead(
   try {
     json = (await res.json()) as WaitlistResponse;
   } catch {
-    /* Non-JSON response — fall back to status-based error below. */
+    /* Non-JSON response – fall back to status-based error below. */
   }
 
   if (!res.ok || !json.success) {

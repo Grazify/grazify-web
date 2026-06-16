@@ -33,8 +33,10 @@ const config: Config = {
         ],
       },
       boxShadow: {
-        soft: "0 10px 30px -12px rgba(16, 25, 20, 0.12)",
-        card: "0 18px 50px -24px rgba(16, 25, 20, 0.22)",
+        /* Layered shadows — a tight contact shadow for definition plus a soft
+           ambient one for depth. Reads more premium than a single blur. */
+        soft: "0 1px 2px -1px rgba(16, 25, 20, 0.06), 0 8px 24px -14px rgba(16, 25, 20, 0.14)",
+        card: "0 2px 6px -2px rgba(16, 25, 20, 0.08), 0 24px 48px -24px rgba(16, 25, 20, 0.20)",
         glass: "0 2px 24px -4px rgba(16, 25, 20, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.96)",
         float: "0 24px 60px -28px rgba(27, 138, 75, 0.32)",
         phone: "0 40px 80px -32px rgba(16, 25, 20, 0.32)",

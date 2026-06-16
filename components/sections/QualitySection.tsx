@@ -1,5 +1,6 @@
 import { Check, ShieldCheck } from "lucide-react";
 import Container from "@/components/common/Container";
+import IconTile from "@/components/common/IconTile";
 import Reveal from "@/components/common/Reveal";
 import SectionHeading from "@/components/common/SectionHeading";
 import { qualityFeatures } from "@/lib/constants";
@@ -12,13 +13,13 @@ const dashboardRows = [
 
 export default function QualitySection() {
   return (
-    <section id="quality" className="bg-grazify-mint py-20 sm:py-24">
+    <section id="quality" className="bg-grazify-mint py-24 sm:py-28">
       <Container>
         <SectionHeading
           align="left"
           eyebrow="Quality You Can Trust"
           title="Freshness your kitchen can depend on"
-          subtitle="Every order moves through a transparent chain of checks — so what arrives at your business is consistent, traceable, and genuinely fresh."
+          subtitle="Every order moves through a transparent chain of checks – so what arrives at your business is consistent, traceable, and genuinely fresh."
         />
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
@@ -26,10 +27,10 @@ export default function QualitySection() {
           <div className="grid gap-5 sm:grid-cols-2">
             {qualityFeatures.map((feature, index) => (
               <Reveal key={feature.title} delay={(index % 2) * 90}>
-                <article className="lift h-full rounded-3xl border border-grazify-border bg-white p-5">
-                  <span className="grid h-11 w-11 place-items-center rounded-2xl bg-grazify-light text-grazify-dark">
+                <article className="tap-card h-full rounded-3xl border border-grazify-border bg-white p-5">
+                  <IconTile className="h-11 w-11">
                     <feature.icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
+                  </IconTile>
                   <h3 className="mt-4 text-base font-bold text-ink">
                     {feature.title}
                   </h3>
@@ -43,12 +44,12 @@ export default function QualitySection() {
 
           {/* Mini dashboard card */}
           <Reveal delay={120}>
-            <div className="rounded-3xl border border-grazify-border bg-white p-6 shadow-card lg:sticky lg:top-28">
+            <div className="rounded-3xl border border-grazify-border bg-white p-6 lg:sticky lg:top-28">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="grid h-11 w-11 place-items-center rounded-2xl bg-grazify-gradient text-white shadow-float">
+                  <IconTile variant="gradient" className="h-11 w-11">
                     <ShieldCheck className="h-5 w-5" aria-hidden="true" />
-                  </span>
+                  </IconTile>
                   <div>
                     <p className="text-sm font-bold text-ink">
                       Today&apos;s supply status

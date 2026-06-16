@@ -5,9 +5,9 @@ import { heroChips } from "@/lib/constants";
 
 export default function WaitlistSection() {
   return (
-    <section id="waitlist" className="py-20 sm:py-24">
+    <section id="waitlist" className="py-24 sm:py-28">
       <Container>
-        <div className="overflow-hidden rounded-3xl border border-grazify-border bg-white shadow-card">
+        <div className="overflow-hidden rounded-3xl border border-grazify-border bg-white">
           <div className="grid gap-0 lg:grid-cols-2">
             {/* Waitlist copy */}
             <div className="relative overflow-hidden bg-grazify-gradient p-8 text-white sm:p-10">
