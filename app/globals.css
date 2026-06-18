@@ -27,13 +27,15 @@
   --dur-slow: 0.6s;
 }
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    /* Keep anchored sections clear of the sticky header. */
-    scroll-padding-top: 110px;
-  }
+html[data-hash-scroll="pending"] {
+  background: var(--grazify-soft);
+}
 
+html[data-hash-scroll="pending"] body {
+  opacity: 0;
+}
+
+@layer base {
   body {
     /* Light-green wash at the very top (behind the floating navbar)
        fading into the soft background — matches the hero. */
@@ -431,10 +433,5 @@
   .btn-primary:active,
   .btn-secondary:active {
     transform: none;
-  }
-
-  /* Disable smooth scroll so anchor jumps are instant. */
-  html {
-    scroll-behavior: auto;
   }
 }
