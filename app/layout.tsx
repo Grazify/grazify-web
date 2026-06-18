@@ -14,6 +14,54 @@ const gilroy = localFont({
   display: "swap",
 });
 
+const hashScrollBootstrap = `
+(() => {
+  const hash = window.location.hash;
+  if (!hash || hash === "#" || hash === "#top" || hash === "#main-content") return;
+
+  const root = document.documentElement;
+  root.dataset.hashScroll = "pending";
+
+  const clear = () => {
+    delete root.dataset.hashScroll;
+  };
+
+  const target = () => {
+    try {
+      return document.getElementById(decodeURIComponent(hash.slice(1)));
+    } catch {
+      return null;
+    }
+  };
+
+  const align = () => {
+    const node = target();
+    if (!node) {
+      clear();
+      return;
+    }
+
+    node.scrollIntoView({ block: "start", behavior: "auto" });
+    requestAnimationFrame(() => {
+      node.scrollIntoView({ block: "start", behavior: "auto" });
+      clear();
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", align, { once: true });
+  } else {
+    align();
+  }
+
+  window.addEventListener("load", () => {
+    target()?.scrollIntoView({ block: "start", behavior: "auto" });
+  }, { once: true });
+
+  window.setTimeout(clear, 1200);
+})();
+`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -79,6 +127,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={gilroy.variable}>
+      <head>
+        <script
+          id="hash-scroll-bootstrap"
+          dangerouslySetInnerHTML={{ __html: hashScrollBootstrap }}
+        />
+      </head>
       <body className="min-h-screen font-sans text-ink antialiased">
         {children}
       </body>

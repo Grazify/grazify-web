@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import HashScroll from "@/components/common/HashScroll";
 import HeroSection from "@/components/sections/HeroSection";
 import SupplyChainSection from "@/components/sections/SupplyChainSection";
 import ProductsSection from "@/components/sections/ProductsSection";
@@ -13,6 +14,7 @@ import FaqSection from "@/components/sections/FaqSection";
 export default function Home() {
   return (
     <>
+      <HashScroll />
       {/* Keyboard / screen-reader users can jump straight past the navbar. */}
       <a
         href="#main-content"
