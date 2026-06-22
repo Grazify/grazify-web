@@ -40,7 +40,7 @@ export default function Header() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="nav-link whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium text-ink/70 hover:bg-grazify-mint hover:text-grazify-primary"
+                  className="nav-link whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold text-ink/80 hover:bg-grazify-mint hover:text-grazify-primary"
                 >
                   {link.label}
                 </a>

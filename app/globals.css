@@ -99,6 +99,7 @@ html[data-hash-scroll="pending"] body {
   /* Primary gradient CTA button. */
   .btn-primary {
     @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-grazify-gradient px-6 py-3 text-sm font-semibold text-white shadow-float;
+    --shine-color: rgba(255, 255, 255, 0.38);
     transition:
       transform var(--dur-base) var(--ease-back),
       box-shadow var(--dur-base) var(--ease-spring);
@@ -117,9 +118,11 @@ html[data-hash-scroll="pending"] body {
 
   /* Secondary outline button. */
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-grazify-border bg-white px-6 py-3 text-sm font-semibold text-ink;
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border border-grazify-border bg-white px-6 py-3 text-sm font-semibold text-ink;
+    --shine-color: rgba(27, 138, 75, 0.18);
     transition:
       transform var(--dur-base) var(--ease-back),
+      box-shadow var(--dur-base) var(--ease-spring),
       border-color var(--dur-fast) ease,
       color var(--dur-fast) ease,
       background-color var(--dur-fast) ease;
@@ -127,15 +130,23 @@ html[data-hash-scroll="pending"] body {
 
   .btn-secondary:hover {
     @apply border-grazify-primary bg-grazify-mint text-grazify-primary;
+    transform: translateY(-2px);
+    box-shadow: 0 24px 54px -30px rgba(27, 138, 75, 0.36);
   }
 
   .btn-secondary:active {
-    transform: scale(0.96);
+    transform: translateY(0) scale(0.96);
     transition-duration: var(--dur-fast);
   }
 
-  /* Looping light sweep across the primary button. */
-  .btn-primary::after {
+  .btn-primary:disabled,
+  .btn-secondary:disabled {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-primary::after,
+  .btn-secondary::after {
     content: "";
     position: absolute;
     top: 0;
@@ -145,11 +156,23 @@ html[data-hash-scroll="pending"] body {
     background: linear-gradient(
       120deg,
       transparent,
-      rgba(255, 255, 255, 0.38),
+      var(--shine-color),
       transparent
     );
     transform: skewX(-20deg);
     animation: shine 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .btn-primary > *,
+  .btn-secondary > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-primary:disabled::after,
+  .btn-secondary:disabled::after {
+    animation: none;
   }
 
   /* Header nav link — light by default, with a smooth pill + colour shift
@@ -178,10 +201,11 @@ html[data-hash-scroll="pending"] body {
 
   .tap-card:hover {
     border-color: rgba(27, 138, 75, 0.45);
+    transform: translateY(-2px);
   }
 
   .tap-card:active {
-    transform: scale(0.97);
+    transform: translateY(0) scale(0.97);
     transition-duration: var(--dur-fast);
   }
 
@@ -417,7 +441,8 @@ html[data-hash-scroll="pending"] body {
   .animate-node-ping,
   .snake-line,
   .snake-head-halo,
-  .btn-primary::after {
+  .btn-primary::after,
+  .btn-secondary::after {
     animation: none;
   }
 
